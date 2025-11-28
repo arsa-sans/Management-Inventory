@@ -9,7 +9,7 @@
     <span class="btn-label">
       <i class="fas fa-plus"></i>
     </span>
-    Add Product
+    Product
   @endif
 </button>
 
