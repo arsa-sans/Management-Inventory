@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
 use App\Models\User;
+use App\Http\Controllers\VarianProductController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -19,5 +20,6 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('master-data')->name('master-data.')->group(function () {
         Route::resource('categories', CategoryProductController::class);
         Route::resource('products', ProductController::class);
+        Route::resource('varian-products', VarianProductController::class)->only(['store', 'update', 'destroy']);
     });
 });

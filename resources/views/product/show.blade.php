@@ -12,7 +12,9 @@
         <x-meta-item label="Description" :value="$product->description ?? '-'" />
         <div class="mt-2">
             <div class="d-flex justify-content-end">
-                <button class="btn btn-primary">Add Variant</button>
+                <button type="button" class="btn btn-dark btn-sm btn-round" data-bs-toggle="modal" data-bs-target="#modalFormVarian">
+                    Add Variant
+                </button>
             </div>
             <div class="row mt-3">
                 <div class="col-12">
@@ -24,4 +26,14 @@
         </div>
     </div>
 </div>
+<x-product.form-varian />
 @endsection
+@push('script')
+<script>
+    $(document).ready(function() {
+        $('#modalFormVarian').on('shown.bs.modal', function () {
+            $('#varian_name').trigger('focus');
+        });
+    });
+</script>
+@endpush
