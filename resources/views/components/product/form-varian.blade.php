@@ -2,7 +2,12 @@
   <!-- Modal -->
   <div class="modal fade" id="modalFormVarian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalFormVarianLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form action="POST" endctype="multipart/form-data" action="{{ $action }}">
+      <form method="POST" enctype="multipart/form-data" action="{{ $action }}">
+        @csrf
+        @if($id)
+            @method('PUT')
+        @endif
+        <input type="hidden" name="product_id" id="product_id" value="{{ $product_id ?? '' }}">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="modalFormVarianLabel">Form Varian</h1>

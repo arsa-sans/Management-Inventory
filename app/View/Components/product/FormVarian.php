@@ -15,7 +15,7 @@ class FormVarian extends Component
     public $id, $product_id, $no_sku, $varian_name, $stock, $price, $action;
     public function __construct($id = null)
     {
-        $product = request()->route('products');
+        $product = request()->route('product');
         $this->product_id = $product ? $product->id : null;
         if($id){
             $varian = VarianProduct::findOrFail($id);

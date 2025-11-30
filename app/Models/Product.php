@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CategoryProduct;
+use App\Models\VarianProduct;
 
 class Product extends Model
 {
@@ -15,5 +16,9 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(CategoryProduct::class, 'category_id');
+    }
+    public function varian()
+    {
+        return $this->hasMany(VarianProduct::class);
     }
 }
