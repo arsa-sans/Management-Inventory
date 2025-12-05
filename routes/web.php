@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductController;
 use App\Models\User;
 use App\Http\Controllers\VarianProductController;
+use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -21,5 +22,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('categories', CategoryProductController::class);
         Route::resource('products', ProductController::class);
         Route::resource('varian-products', VarianProductController::class)->only(['store', 'update', 'destroy']);
+        Route::resource('inventories', InventoryController::class)->only('index');
     });
 });

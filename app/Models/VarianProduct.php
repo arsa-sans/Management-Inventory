@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 
 class VarianProduct extends Model
 {
@@ -14,6 +15,11 @@ class VarianProduct extends Model
         'price',
         'image',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
     public static function generateSKU()
     {

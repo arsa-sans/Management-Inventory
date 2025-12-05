@@ -37,6 +37,10 @@ class Sidebar extends Component
                         'label' => 'Data Products',
                         'route' => 'master-data.products.index',
                     ],
+                    [
+                        'label' => 'Inventories',
+                        'route' => 'master-data.inventories.index',
+                    ],
                 ],
             ],
         ];
