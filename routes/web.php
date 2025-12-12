@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Models\User;
 use App\Http\Controllers\VarianProductController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\CardStockController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -24,4 +25,6 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('varian-products', VarianProductController::class)->only(['store', 'update', 'destroy']);
         Route::resource('inventories', InventoryController::class)->only('index');
     });
+
+    Route::get('/card-stock/{no_sku}',[CardStockController::class, 'cardStock'])->name('card-stock.cardStock');
 });

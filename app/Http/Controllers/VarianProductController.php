@@ -7,6 +7,8 @@ use App\Models\VarianProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\updateVarianProductRequest;
+use App\Models\CardStock;
+use Illuminate\Support\Facades\Auth;
 
 class VarianProductController extends Controller
 {
@@ -28,7 +30,13 @@ class VarianProductController extends Controller
 
     public function update(updateVarianProductRequest $request, $varian_product)
     {
+        $isAdjustment = false;
         $varian = VarianProduct::findOrFail($varian_product);
+
+        if($request->stock != $varian->stock){
+            $isAdjustment = true;
+        }
+
         $fileName = $varian->image;
 
         if($request->hasFile('image')){
@@ -43,6 +51,16 @@ class VarianProductController extends Controller
             'price' => $request->price,
             'image' => $fileName,
         ]);
+
+        if($isAdjustment){
+            CardStock::create([
+                'type_transaction' => 'Adjustment',
+                'no_sku' => $varian->no_sku,
+                'last_stock' => $varian->stock,
+                'officer' => Auth::user()->name,
+            ]);
+        }
+
         return response()->json(['message' => 'Varian product updated successfully.']);
     }
 

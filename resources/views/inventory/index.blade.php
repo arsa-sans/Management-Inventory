@@ -46,7 +46,9 @@
               <td>{{ $item['category_name'] }}</td>
               <td>{{ $item['stock'] }} pcs</td>
               <td>Rp. {{ number_format($item['price']) }}</td>
-              <td></td>
+              <td>
+                <x-card-stock no_sku="{{ $item['no_sku'] }}" />
+              </td>
             </tr>
           @empty
             <tr>
